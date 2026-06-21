@@ -1,0 +1,32 @@
+<div class="cart-container">
+  <h1>My Cart</h1>
+
+@if(cartItems.length === 0){
+  <p >The cart is empty.</p>
+}
+
+  <div class="cart-items-container">
+    <div *ngFor="let item of cartItems; let i = index" class="cart-item" id="cart-item-{{ i }}">
+      <img [src]="item.image" [alt]="item.prodName" class="cart-item-image" />
+
+      <div class="cart-item-details">
+        <h2>{{ item.prodName }}</h2>
+        <p>{{ item.description }}</p>
+        <p><strong>Price:</strong> {{ item.price | currency }}</p>
+        <p><strong>Quantity:</strong> {{ item.quantity }}</p>
+
+  
+        <div class="cart-item-buttons">
+          <button (click)="increaseQuantity(i)" class="button11">+</button>
+          <button (click)="decreaseQuantity(i)" class="button11" [disabled]="item.quantity === 1">-</button>
+          <button (click)="removeItem(i)" class="button11">Remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cart-item-buttons">
+  <button (click)="clearCart()" class="clear-cart-button">Empty the Cart</button>
+  <button routerLink='checkout' class="clear-cart-button">go to checkout</button>
+</div>
+</div>

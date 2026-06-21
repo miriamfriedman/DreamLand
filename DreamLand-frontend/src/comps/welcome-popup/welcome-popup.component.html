@@ -1,0 +1,11 @@
+<div class="popup-backdrop" [ngClass]="{'popup-hidden': !showPopup}">
+    <div class="popup">
+      <img src="image.png" alt="Logo de la página" class="popup-logo" height="100px"/>
+      <h2>¡Welcome!</h2>
+      <p>
+        We hace sale <strong>50%</strong> only for the registered users. Take advantage now with the coupon
+        <strong>123456</strong>!
+      </p>
+      <button class="popup-btn" (click)="closePopup()">Close</button>
+    </div>
+  </div>

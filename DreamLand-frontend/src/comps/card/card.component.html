@@ -1,0 +1,18 @@
+<div class="image-container">
+  <a [routerLink]="['/details', product?.prodId]"
+    (click)="product?.prodId !== undefined ? productclick(product?.prodId!) : null">
+    <img [src]="product?.image" alt="Toy 1" class="toy-image">
+  </a>
+</div>
+<div class="info">
+  <h2 class="toy-title">{{product?.prodName}}</h2>
+  <p class="toy-price">{{product?.price |currency}} </p>
+  <div class="favorite-container">
+    <button appChangeBorder class="favorite-button"> ❤ </button>
+  </div>
+  <div [hidden]="product?.stockQty!=0">not availbale</div>
+  <button [ngClass]="{'finish': product?.stockQty == 0}" class="buy-button" appChangeColor
+    (click)="addToCart(product!)">
+    <img src="icons/shopping-cart.png" alt="Cart" class="cart-icon" />
+    Add to Cart
+  </button>

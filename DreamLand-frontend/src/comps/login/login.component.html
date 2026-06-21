@@ -1,0 +1,95 @@
+<div class="alert-container">
+    <div [hidden]="!successMessage" class="alert alert-success">{{ successMessage }}</div>
+    <div [hidden]="!errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+</div>
+
+<div class="container d-flex justify-content-center align-items-center vh-100"
+    style="background-image: url('image.png'); background-size: contain; background-position: center; background-repeat: no-repeat; position: relative;">
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="was-validated col-md-4 bg-light rounded p-4"
+        style="opacity: 0.9;">
+        <div class="mb-3 mt-3">
+            <label for="uname" class="form-label">Username:</label>
+            <input type="text" class="form-control" id="uname" name="uname" [(ngModel)]="c.custName" required
+                #uname="ngModel" minlength="4" pattern="[a-z\d]*">
+            @if(uname.invalid && (uname.dirty||uname.touched))
+            {
+            <div class="invalid-feedback">
+                <p [hidden]="!uname.errors!['required']">Please fill out this field.</p>
+                <p [hidden]="!uname.errors!['minlength']">user name must be longer</p>
+                <p [hidden]="!uname.errors!['pattern']">user name most be in English</p>
+            </div>
+            }
+            @else if(uname.dirty||uname.touched) {
+            <div class="valid-feedback">Valid.</div>
+            }
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" [(ngModel)]="c.custEmail" required
+                pattern="[\-a-zA-Z0-9~!$%^&amp;*_=+\}\{'?]+(\.[\-a-zA-Z0-9~!$%^&amp;*_=+\}\{'?]+)*@[a-zA-Z0-9_][\-a-zA-Z0-9_]*(\.[\-a-zA-Z0-9_]+)*\.[cC][oO][mM](:[0-9]{1,5})?"
+                #email="ngModel">
+            @if(email.invalid && (email.dirty||email.touched))
+            {
+            <div class="invalid-feedback">
+                <p [hidden]="!email.errors!['required']">Please fill out this field.</p>
+                <p [hidden]="!email.errors!['pattern']">invalid email adress.</p>
+            </div>
+            }
+            @else if(email.dirty||email.touched) {
+            <div class="valid-feedback">Valid.</div>
+            }
+        </div>
+
+        <div class="mb-3">
+            <label for="id" class="form-label">id:</label>
+            <input type="text" class="form-control" id="id" name="id" [(ngModel)]="c.custId" #id="ngModel" required>
+            @if(id.invalid && (id.dirty||id.touched))
+            {
+            <div class="invalid-feedback">
+                <p [hidden]="!id.errors!['required']">Please fill out this field.</p>
+            </div>
+            }
+            @else if(id.dirty||id.touched) {
+            <div class="valid-feedback">Valid.</div>
+            }
+        </div>
+        <div [hidden]="showRegistration" class="mb-3">
+            <label for="custPhone" class="form-label">Phone:</label>
+            <input type="text" class="form-control" id="custPhone" name="custPhone" [(ngModel)]="c.custPhone"
+                pattern="\d{9,10}" #Phone="ngModel" [required]="!showRegistration">
+            @if(Phone.invalid && (Phone.dirty||Phone.touched))
+            {
+            <div class="invalid-feedback">
+                <p [hidden]="!Phone.errors!['required']">Please fill out this field.</p>
+                <p [hidden]="!Phone.errors!['pattern']">invalid phone number.</p>
+            </div>
+            }
+        </div>
+        <div [hidden]="showRegistration" class="mb-3">
+            <label for="BirthDay" class="form-label">BirthDay:</label>
+            <input type="date" class="form-control" id="BirthDay" name="BirthDay" [(ngModel)]="c.CustDateOfBirth"
+                #DateOfBirth="ngModel" [required]="!showRegistration">
+            @if(DateOfBirth.invalid && (DateOfBirth.dirty||DateOfBirth.touched))
+            {
+            <div class="invalid-feedback">
+                <p [hidden]="!DateOfBirth.errors!['required']">Please fill out this field.</p>
+            </div>
+            }
+            @else if(DateOfBirth.dirty||DateOfBirth.touched) {
+            <div class="valid-feedback">Valid.</div>
+            }
+        </div>
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="myCheck" required>
+            <label class="form-check-label" for="myCheck">I agree on blabla.</label>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Check this checkbox to continue.</div>
+        </div>
+        <button type="button" class="d-block mb-3" style="font-size: 0.8em;" (click)="showRegistrationForm()">If you are
+            a new
+            customer, please register fill your info.</button>
+        <button type="submit" class="btn btn-primary"
+            [disabled]="!loginForm.valid || (showRegistration && (!Phone.valid || !DateOfBirth.valid))">Submit</button>
+    </form>
+</div>
+

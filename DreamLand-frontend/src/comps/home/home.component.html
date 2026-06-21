@@ -1,0 +1,38 @@
+<app-slider/>
+<div class="categories-container">
+  <div class="category" (click)="onCategoryClick(1)">
+    <img src="/pics/Logo/5.webp" alt="Categoria 1" class="category-image" />
+  </div>
+  <div class="category" (click)="onCategoryClick(2)">
+    <img src="/pics/Logo/1.webp" alt="Categoria 2" class="category-image" />
+  </div>
+  <div class="category" (click)="onCategoryClick(3)">
+    <img src="/pics/Logo/3 (2).webp" alt="Categoria 3" class="category-image" />
+  </div>
+  <div class="category" (click)="onCategoryClick(4)">
+    <img src="/pics/Logo/prodimg5.webp" alt="Categoria 4" id="round-image" class="category-image" />
+  </div>
+  <div class="category" (click)="onCategoryClick(5)">
+    <img src="/pics/Logo/4.webp" alt="Categoria 5" class="category-image" />
+  </div>
+  <div class="category" (click)="onCategoryClick(6)">
+    <img src="/pics/Logo/Lego.jpg" alt="Categoria 6" id="round-image" class="category-image" />
+  </div>
+</div>
+<div class="container-fluid">
+<li class="nav-item" >
+  <button class="nav-link" (click)="onShowAllProducts()"><img src="/icons/close (1).png" height="20px"></button>
+</li>
+<li class="nav-item" >
+  <button class="nav-link" (click)="onShowSortedProducts()"><img src="/icons/sort.png" height="20px"></button>
+</li>
+</div>
+
+<div class="card-container">
+  @for(p of alls; track p.prodId)
+  {
+  <div class="card">
+    <app-card [product]="p" />
+  </div>
+  }
+</div>

@@ -1,0 +1,35 @@
+<div class="checkout-container">
+  <h1>Checkout</h1>
+  <p>Please complete your purchase.</p>
+
+  <div class="customer-info">
+    <p><strong>price:</strong> {{ CartS.getCartTotal()| currency }}</p>
+    <p><strong>Customer:</strong> {{ service.currentCustomer.custName }}</p>
+    <p><strong>Email:</strong> {{ service.currentCustomer.custEmail }}</p>
+  </div>
+
+  <button (click)="onCheckout()" class="checkout-button">Proceed to Payment</button>
+
+@if(showPaymentModal){
+  <div  class="payment-modal">
+    <div class="payment-modal-content">
+      <h2>Payment Details</h2>
+      <form (ngSubmit)="processPayment()" #paymentForm="ngForm">
+        <label for="cardNumber">Card Number</label>
+        <input type="text" id="cardNumber" required [(ngModel)]="paymentDetails.cardNumber" name="cardNumber" />
+
+        <label for="expiryDate">Expiry Date</label>
+        <input type="text" id="expiryDate" placeholder="MM/YY" required [(ngModel)]="paymentDetails.expiryDate" name="expiryDate" />
+
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" placeholder="123" required [(ngModel)]="paymentDetails.cvv" name="cvv" />
+
+        <label for="amount">Amount</label>
+        <input type="number" id="amount" required [(ngModel)]="paymentDetails.amount" name="amount" [value]="amount" readonly />
+
+        <button type="submit" class="pay-button">Pay Now</button>
+      </form>
+      <button (click)="closeModal()" class="close-button">Cancel</button>
+    </div>
+  </div>
+}

@@ -1,0 +1,15 @@
+#carouselExampleFade {
+  width: 80%; /* Ajusta el tamaño del carousel */
+  margin: 0 auto; /* Centra el carousel */
+  max-width: 1000px; /* Tamaño máximo del carousel */
+
+}
+
+#carouselExampleFade .carousel-item img {
+  object-fit: cover; /* Ajusta la imagen para que ocupe el área sin distorsionarse */
+  width: 100%; /* Asegura que la imagen cubra todo el contenedor */
+  height: 350px; /* Establece una altura fija */
+}
+.carousel-control-next
+{  border: none}
+.carousel-control-prev{   border: none }
